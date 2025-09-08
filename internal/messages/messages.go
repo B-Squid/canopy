@@ -1,18 +1,31 @@
 package messages
 
+type Sorter interface {
+	Getid() int
+}
+
 type SdMessage struct {
-	createdBy        string
-	createdTime      string
-	id               string //добавить метод  возврата ссылки на заявки по id. Типа https://<server>/api/<id>
-	priority         string
-	shortDescription string
-	subject          string
+	CreatedBy string
+	Id        int
 }
 
 type RichMessage struct {
-	SdMessage
+	Id        int
 	RouteRule string
 }
 
 type DbMessage struct {
+	Id int
+}
+
+func (i SdMessage) Getid() int {
+	return i.Id
+}
+
+func (i RichMessage) Getid() int {
+	return i.Id
+}
+
+func (i DbMessage) Getid() int {
+	return i.Id
 }
