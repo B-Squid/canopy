@@ -9,7 +9,7 @@ import (
 func main() {
 	for {
 		time.Sleep(5 * time.Second)
-		hjk := s.Transciever()
-		r.Reciever(hjk)
+		payload := s.Transciever()
+		r.Reciever(payload)
 	}
 }

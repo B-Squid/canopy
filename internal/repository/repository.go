@@ -10,9 +10,7 @@ var SliceForId2 []m.RichMessage
 var SliceForId3 []m.DbMessage
 
 func Reciever(s []m.Sorter) {
-	//for i := 0; i < 3; i++ {
-	//fmt.Printf(strconv.Itoa(s[i].Getid()))
-	//	fmt.Printf("id = %d\n", s[i].Getid())
+
 	for i := range s {
 		switch v := s[i].(type) {
 		case m.SdMessage:
@@ -26,8 +24,6 @@ func Reciever(s []m.Sorter) {
 			SliceForId3 = append(SliceForId3, s[i].(m.DbMessage))
 		default:
 			fmt.Println("Unknown type :(")
-
 		}
 	}
-	//fmt.Println(r.SliceForId1)
 }
