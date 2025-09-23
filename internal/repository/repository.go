@@ -9,21 +9,25 @@ var SliceForSd []m.SdMessage
 var SliceForRich []m.RichMessage
 var SliceForDb []m.DbMessage
 
-func Reciever(s []m.Sorter) {
-
-	for i := range s {
-		switch v := s[i].(type) {
-		case m.SdMessage:
-			fmt.Println("Processing SdMessage, Id =", v.Id)
-			SliceForSd = append(SliceForSd, s[i].(m.SdMessage))
-		case m.RichMessage:
-			fmt.Println("Processing RichMessage, Id =", v.Id)
-			SliceForRich = append(SliceForRich, s[i].(m.RichMessage))
-		case m.DbMessage:
-			fmt.Println("Processing DbMessage, Id =", v.Id)
-			SliceForDb = append(SliceForDb, s[i].(m.DbMessage))
-		default:
-			fmt.Println("Unknown message type :(")
+func Reciever(ch <-chan []m.Sorter) {
+	fmt.Print("Start reciever")
+	for {
+		//time.Sleep(5 * time.Second)
+		s := <-ch
+		for i := range s {
+			switch v := s[i].(type) {
+			case m.SdMessage:
+				fmt.Println("Processing SdMessage, Id =", v.Id)
+				SliceForSd = append(SliceForSd, s[i].(m.SdMessage))
+			case m.RichMessage:
+				fmt.Println("Processing RichMessage, Id =", v.Id)
+				SliceForRich = append(SliceForRich, s[i].(m.RichMessage))
+			case m.DbMessage:
+				fmt.Println("Processing DbMessage, Id =", v.Id)
+				SliceForDb = append(SliceForDb, s[i].(m.DbMessage))
+			default:
+				fmt.Println("Unknown message type :(")
+			}
 		}
 	}
 }

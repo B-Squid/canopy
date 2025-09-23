@@ -1,15 +1,21 @@
 package main
 
 import (
+	l "canopy/internal/logger"
+	m "canopy/internal/messages"
 	r "canopy/internal/repository"
 	s "canopy/internal/service"
 	"time"
 )
 
 func main() {
+	var ch = make(chan []m.Sorter)
+	go s.Transciever(ch)
+	go r.Reciever(ch)
+
 	for {
-		time.Sleep(5 * time.Second)
-		payload := s.Transciever()
-		r.Reciever(payload)
+		go l.Logman()
+		time.Sleep(200 * time.Millisecond)
 	}
+	//close(ch)
 }
