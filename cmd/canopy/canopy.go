@@ -17,16 +17,8 @@ func main() {
 	for i := 1; i < 5; i++ {
 		go s.Transciever(ch, i)
 		go r.Reciever(ch, i)
-		//time.Sleep(time.Duration(s.Rand10Int()))
-		//time.Sleep(1 * time.Second)
 	}
 
-	//	for i := 1; i < 5; i++ {
-	//go r.Reciever(ch, &GlobalMutex)
-	//		go r.Reciever(ch, i)
-	//time.Sleep(time.Duration(s.Rand10Int()))
-	//time.Sleep(1 * time.Second)
-	//	}
 	for {
 		time.Sleep(200 * time.Millisecond)
 	}
