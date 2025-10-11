@@ -10,12 +10,25 @@ import (
 
 func main() {
 	var ch = make(chan []m.Sorter)
-	go s.Transciever(ch)
-	go r.Reciever(ch)
+	//var GlobalMutex sync.Mutex
 
+	go l.Logman()
+
+	for i := 1; i < 5; i++ {
+		go s.Transciever(ch, i)
+		go r.Reciever(ch, i)
+		//time.Sleep(time.Duration(s.Rand10Int()))
+		//time.Sleep(1 * time.Second)
+	}
+
+	//	for i := 1; i < 5; i++ {
+	//go r.Reciever(ch, &GlobalMutex)
+	//		go r.Reciever(ch, i)
+	//time.Sleep(time.Duration(s.Rand10Int()))
+	//time.Sleep(1 * time.Second)
+	//	}
 	for {
-		go l.Logman()
 		time.Sleep(200 * time.Millisecond)
 	}
-	//close(ch)
+
 }
