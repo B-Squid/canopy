@@ -1,7 +1,7 @@
 package logger
 
 import (
-	r "canopy/internal/repository"
+	r "canopy/internal/service"
 	"fmt"
 	"time"
 )
