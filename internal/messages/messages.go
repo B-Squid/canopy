@@ -1,18 +1,18 @@
 package messages
 
 type SdMessage struct {
-	createdBy        string
-	createdTime      string
-	id               string //добавить метод  возврата ссылки на заявки по id. Типа https://<server>/api/<id>
-	priority         string
-	shortDescription string
-	subject          string
+	createdBy        string // автор created_by.name
+	createdTime      string // время создания created_time.value
+	id               string // id. Добавить метод  возврата ссылки на заявки по id. Типа https://<server>/api/<id>
+	priority         string // важность priority.name
+	shortDescription string // краткое описание short_description
+	subject          string // тема subject
 }
 
 type RichMessage struct {
 	SdMessage
-	RouteRule string
+	Origin string // некий идентификатор источника сообщения
 }
 
-type DbMessage struct {
+type DbMessage struct { // что писать в БД мы пока не знаем
 }

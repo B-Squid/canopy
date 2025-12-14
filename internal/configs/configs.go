@@ -3,25 +3,28 @@ package configs
 import "fmt"
 
 type AppConfig struct {
-	userName            string
-	userSalt            string
-	authtoken           string
-	sdServer            string
-	sdServerPort        string
-	apiPath             string
-	rmqServer           string
-	rmqServerPort       string
-	pgServer            string
-	pgServerPort        string
-	filterHeader        string
-	filterBody          string
+	userName            string // имя пользователя в ServiceDesk
+	userSalt            string // случайный идентификатор, отличающий двух пользователей с одинаковым именем
+	authtoken           string // токен доступа к ServiceDesk
+	sdServer            string // адрес сервера ServiceDesk
+	sdServerPort        string // порт сервера ServiceDesk
+	apiPath             string // путь в api
+	rmqServer           string // адрес сервера RabbitMQ
+	rmqServerPort       string // порт сервера RabbitMQ
+	pgServer            string // адрес сервера PosgtreSQL
+	pgServerPort        string // порт сервера PosgtreSQL
 	pollingEnabled      bool
 	pollingFrequencySec int
 	rowCount            int
 	RouteRule           string
 }
 
-type configCheck struct {
+type MessageFilter struct {
+	filterHeader string // фильтр сообщения по полю subject
+	filterBody   string // фильтр сообщения по полю shortDescription
+}
+
+type configCheck struct { // проверка значений настроек
 	regExpSdServer      string
 	regExpSdServerPort  string
 	regExpRmqServer     string
