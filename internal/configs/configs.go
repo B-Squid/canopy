@@ -19,11 +19,6 @@ type AppConfig struct {
 	RouteRule           string
 }
 
-type MessageFilter struct {
-	filterHeader string // фильтр сообщения по полю subject
-	filterBody   string // фильтр сообщения по полю shortDescription
-}
-
 type configCheck struct { // проверка значений настроек
 	regExpSdServer      string
 	regExpSdServerPort  string
